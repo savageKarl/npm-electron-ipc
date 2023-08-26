@@ -1,6 +1,6 @@
 {
   "name": "@savage181855/electron-ipc",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "一个用于electron的通信库",
   "main": "dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -11,6 +11,16 @@
     "dist/index.d.ts",
     "dist/index.cjs.map",
     "dist/index.mjs.map"
+  ],
+  "keywords": [
+    "electron-ipc",
+    "electrion",
+    "ipc",
+    "ipc-electron",
+    "electron-publish",
+    "electron-subscribe",
+    "electron ipc",
+    "ipc electron"
   ],
   "types": "./dist/index.d.ts",
   "publishConfig": {
