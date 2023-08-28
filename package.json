@@ -1,6 +1,6 @@
 {
   "name": "savage-electron-ipc",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "一个用于electron的通信库",
   "main": "dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -22,7 +22,7 @@
     "electron ipc",
     "ipc electron"
   ],
-  "types": "./main/index.d.ts",
+  "types": "./dist/main.d.ts",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
