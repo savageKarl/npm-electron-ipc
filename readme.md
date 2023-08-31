@@ -143,7 +143,6 @@ ipc.receive("msg", (e, v) => {
 });
 ```
 
-## [api](./docs/markdown/index.md)
+## [api](./docs/index.html)
 
-[api](./docs/markdown/index.md)
 

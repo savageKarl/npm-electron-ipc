@@ -44,7 +44,9 @@
   },
   "license": "GPL-3.0",
   "devDependencies": {
-    "savage-rollup-config": "^0.0.13"
+    "@mxssfd/typedoc-theme": "^1.1.2",
+    "savage-rollup-config": "^0.0.13",
+    "typedoc": "0.24.8"
   },
   "dependencies": {
     "@microsoft/api-extractor": "^7.36.4",
