@@ -10,6 +10,7 @@
 |  --- | --- |
 |  [addToChannel(window)](./savage-electron-ipc.addtochannel.md) | add window to communication channel |
 |  [receive(channel, listener)](./savage-electron-ipc.receive.md) | render process receive message from main process |
+|  [say()](./savage-electron-ipc.say.md) | **_(BETA)_** |
 |  [send(channel, args)](./savage-electron-ipc.send.md) | render process receive message from main process |
 
 ## Variables

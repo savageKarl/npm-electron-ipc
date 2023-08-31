@@ -98,7 +98,11 @@ export function receive<T = any[]>(
 	if (ipcRenderer) renderFromMain(channel, listener)
 }
 
-function say() {
+/**
+ * @beta
+ * @returns 'fuckyou'
+ */
+export function say() {
 	return 'fuck you'
 }
 

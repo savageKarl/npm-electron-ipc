@@ -383,6 +383,34 @@
         },
         {
           "kind": "Function",
+          "canonicalReference": "savage-electron-ipc!say:function(1)",
+          "docComment": "/**\n * @returns 'fuckyou'\n *\n * @beta\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "declare function say(): "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "dist/main.d.ts",
+          "returnTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          },
+          "releaseTag": "Beta",
+          "overloadIndex": 1,
+          "parameters": [],
+          "name": "say"
+        },
+        {
+          "kind": "Function",
           "canonicalReference": "savage-electron-ipc!send:function(1)",
           "docComment": "/**\n * render process receive message from main process\n *\n * @param channel - The name of the event.\n *\n * @param args - What you want to send\n *\n * @public\n */\n",
           "excerptTokens": [
