@@ -6,13 +6,16 @@ module.exports = {
 		'plugin:prettier/recommended'
 	],
 	parser: '@typescript-eslint/parser',
-	plugins: ['promise', 'prettier'],
+	plugins: ['promise', 'prettier', 'tsdoc'],
 	root: true,
 	env: {
 		commonjs: true
 	},
 	rules: {
-		'prettier/prettier': 'error' // 对于不符合prettier报eslint错误
+		'tsdoc/syntax': 'warn',
+		'prettier/prettier': 'error', // 对于不符合prettier报eslint错误"rules": {
+
+		'@typescript-eslint/no-explicit-any': ['off']
 	},
 	parserOptions: { ecmaVersion: 6, sourceType: 'module' }
 }

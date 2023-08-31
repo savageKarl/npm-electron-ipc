@@ -143,8 +143,7 @@ ipc.receive("msg", (e, v) => {
 });
 ```
 
-## api
+## [api](./docs/markdown/index.md)
 
-- addToChannel: (v: BrowserWindow | BrowserWindow[]) => void
-- send: (channel: string, ...args: any[]) => Promise<any>;
-- receive: (channel: string, listener: (event: IpcMainInvokeEvent | IpcRendererEvent, args: any) => any) => void
+[api](./docs/markdown/index.md)
+
