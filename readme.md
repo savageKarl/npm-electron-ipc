@@ -4,9 +4,9 @@
 
 ## 功能
 
--   主进程到渲染进程的双向通信
--   渲染进程到主进程的双向通信
--   渲染进程到渲染进程的双向通信
+- 主进程到渲染进程的双向通信
+- 渲染进程到主进程的双向通信
+- 渲染进程到渲染进程的双向通信
 
 ## 使用
 
@@ -22,23 +22,26 @@ import path from "path";
 import ipc from "savage-electron-ipc";
 
 function createWindow() {
-    const mainWindow = new BrowserWindow({
-        webPreferences: {
-            preload: path.join(__dirname, "preload.ts"),
-        },
+  const mainWindow = new BrowserWindow({
+    webPreferences: {
+      preload: path.join(__dirname, "preload.ts"),
+      // 需要打开这个选项，要不然 preload 无法访问 node 模块
+      nodeIntegration: true,
+    },
+  });
+
+  // 添加需要进行通信的窗口
+  ipc.addToChannel(mainWindow);
+
+  ipc
+    .send<string>(win.webContents, "滴滴滴", "天王盖地虎")
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
     });
-
-    // 添加需要进行通信的窗口
-    ipc.addToChannel(mainWindow);
-
-    ipc.send<string>(win.webContents, "滴滴滴", "天王盖地虎")
-        .then((res) => {
-            console.log(res);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-    mainWindow.loadFile("index.html");
+  mainWindow.loadFile("index.html");
 }
 // ...
 ```
@@ -49,8 +52,8 @@ function createWindow() {
 import ipc from "savage-electron-ipc";
 
 ipc.renderFromMain("滴滴滴", (e, arg) => {
-    console.log(arg);
-    return "宝塔镇河妖";
+  console.log(arg);
+  return "宝塔镇河妖";
 });
 ```
 
@@ -64,20 +67,20 @@ import path from "path";
 import ipc from "savage-electron-ipc";
 
 function createWindow() {
-    const mainWindow = new BrowserWindow({
-        webPreferences: {
-            preload: path.join(__dirname, "preload.ts"),
-        },
-    });
+  const mainWindow = new BrowserWindow({
+    webPreferences: {
+      preload: path.join(__dirname, "preload.ts"),
+    },
+  });
 
-    // 添加需要进行通信的窗口
-    ipc.addToChannel(mainWindow);
+  // 添加需要进行通信的窗口
+  ipc.addToChannel(mainWindow);
 
-    ipc.receive("msg", (e, v) => {
-        console.log(v); // 'hello'
-        return "how dare you!";
-    });
-    mainWindow.loadFile("index.html");
+  ipc.receive("msg", (e, v) => {
+    console.log(v); // 'hello'
+    return "how dare you!";
+  });
+  mainWindow.loadFile("index.html");
 }
 // ...
 ```
@@ -100,23 +103,23 @@ import path from "path";
 import ipc from "savage-electron-ipc";
 
 function createWindow() {
-    const mainWindow = new BrowserWindow({
-        webPreferences: {
-            preload: path.join(__dirname, "preload.ts"),
-        },
-    });
+  const mainWindow = new BrowserWindow({
+    webPreferences: {
+      preload: path.join(__dirname, "preload.ts"),
+    },
+  });
 
-    const secondWindow = new BrowserWindow({
-        webPreferences: {
-            preload: path.join(__dirname, "preload.ts"),
-        },
-    });
+  const secondWindow = new BrowserWindow({
+    webPreferences: {
+      preload: path.join(__dirname, "preload.ts"),
+    },
+  });
 
-    // 添加需要进行通信的窗口
-    ipc.addToChannel([mainWindow, secondWindow]);
+  // 添加需要进行通信的窗口
+  ipc.addToChannel([mainWindow, secondWindow]);
 
-    mainWindow.loadFile("index.html");
-    secondWindow.loadFile("index.html");
+  mainWindow.loadFile("index.html");
+  secondWindow.loadFile("index.html");
 }
 // ...
 ```
@@ -135,13 +138,13 @@ ipc.send("msg", "hello");
 import ipc from "savage-electron-ipc";
 
 ipc.receive("msg", (e, v) => {
-    console.log(v); // 'hello'
-    return "how dare you!";
+  console.log(v); // 'hello'
+  return "how dare you!";
 });
 ```
 
 ## api
 
--   addToChannel: (v: BrowserWindow | BrowserWindow[]) => void
--   send: (channel: string, ...args: any[]) => Promise<any>;
--   receive: (channel: string, listener: (event: IpcMainInvokeEvent | IpcRendererEvent, args: any) => any) => void
+- addToChannel: (v: BrowserWindow | BrowserWindow[]) => void
+- send: (channel: string, ...args: any[]) => Promise<any>;
+- receive: (channel: string, listener: (event: IpcMainInvokeEvent | IpcRendererEvent, args: any) => any) => void
