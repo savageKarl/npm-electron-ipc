@@ -1,14 +1,130 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 var electron = require('electron');
 
-const renderToMain=(_0x2a1023,_0x3008df)=>{return electron.ipcRenderer['\x69\x6e\x76\x6f\x6b\x65'](_0x2a1023,_0x3008df);};const mainFromRender=(_0x713631,_0x1872d9)=>{return electron.ipcMain['\x68\x61\x6e\x64\x6c\x65'](_0x713631,_0x1872d9);};const mainToRender=(_0x1099fc,_0x2331a4)=>{var _0x2d2534={'\x7a\x53\x4d\x70\x57':function(_0x1386be,_0x39b245){return _0x1386be(_0x39b245);},'\x47\x74\x6e\x49\x59':'\x62\x69\x2d\x64\x69\x72\x65\x63\x74\x69\x6f\x6e\x61\x6c'};windowList['\x66\x6f\x72\x45\x61\x63\x68'](_0x4f41eb=>_0x4f41eb['\x77\x65\x62\x43\x6f\x6e\x74\x65\x6e\x74\x73']['\x73\x65\x6e\x64'](_0x1099fc,_0x2331a4));return new Promise(_0x3b154c=>{electron.ipcMain['\x6f\x6e'](_0x2d2534['\x47\x74\x6e\x49\x59'],(_0x2f9d1c,_0x2331a4)=>{_0x2d2534['\x7a\x53\x4d\x70\x57'](_0x3b154c,_0x2331a4);});});};const renderFromMain=(_0x1da850,_0x4cc2df)=>{var _0x3e15b2={'\x4d\x53\x61\x4b\x4b':'\x62\x69\x2d\x64\x69\x72\x65\x63\x74\x69\x6f\x6e\x61\x6c','\x69\x41\x50\x58\x78':function(_0x5d47f7,_0x269c85,_0x579691){return _0x5d47f7(_0x269c85,_0x579691);}};electron.ipcRenderer['\x6f\x6e'](_0x1da850,(_0x3c6abf,_0x2a3510)=>{electron.ipcRenderer['\x73\x65\x6e\x64'](_0x3e15b2['\x4d\x53\x61\x4b\x4b'],_0x3e15b2['\x69\x41\x50\x58\x78'](_0x4cc2df,_0x3c6abf,_0x2a3510));});};const windowList=[];function isBrowserWindow(_0xa520ed){var _0x18afdd={'\x53\x72\x6a\x6d\x49':function(_0x3897ef,_0x13fcb3){return _0x3897ef===_0x13fcb3;},'\x6e\x64\x4d\x79\x47':'\x5b\x6f\x62\x6a\x65\x63\x74\x20\x4f\x62\x6a\x65\x63\x74\x5d'};return _0x18afdd['\x53\x72\x6a\x6d\x49'](Object['\x70\x72\x6f\x74\x6f\x74\x79\x70\x65']['\x74\x6f\x53\x74\x72\x69\x6e\x67']['\x63\x61\x6c\x6c'](_0xa520ed),_0x18afdd['\x6e\x64\x4d\x79\x47']);}function isBrowserWindowArray(_0x4d5dde){var _0x4c906d={'\x50\x70\x45\x70\x74':function(_0x45b392,_0x7b74b){return _0x45b392===_0x7b74b;},'\x7a\x7a\x6b\x45\x56':'\x5b\x6f\x62\x6a\x65\x63\x74\x20\x41\x72\x72\x61\x79\x5d'};return _0x4c906d['\x50\x70\x45\x70\x74'](Object['\x70\x72\x6f\x74\x6f\x74\x79\x70\x65']['\x74\x6f\x53\x74\x72\x69\x6e\x67']['\x63\x61\x6c\x6c'](_0x4d5dde),_0x4c906d['\x7a\x7a\x6b\x45\x56']);}function addToChannel(_0x5839f0){var _0x320d04={'\x6e\x68\x46\x59\x4b':function(_0x28b16c,_0x43bbfa){return _0x28b16c(_0x43bbfa);}};if(_0x320d04['\x6e\x68\x46\x59\x4b'](isBrowserWindow,_0x5839f0))windowList['\x70\x75\x73\x68'](_0x5839f0);if(_0x320d04['\x6e\x68\x46\x59\x4b'](isBrowserWindowArray,_0x5839f0))windowList['\x70\x75\x73\x68'](..._0x5839f0);}function send(_0x326420,..._0x10467d){var _0x116b08={'\x43\x73\x62\x6c\x6c':function(_0x431db4,_0x4aaec9,_0x2b323e){return _0x431db4(_0x4aaec9,_0x2b323e);},'\x54\x6d\x46\x6e\x43':function(_0x3364a5,_0x53db2a,_0x49b314){return _0x3364a5(_0x53db2a,_0x49b314);},'\x4d\x61\x45\x67\x4b':function(_0xed57f2,_0x389ad4,_0x4e5c44){return _0xed57f2(_0x389ad4,_0x4e5c44);},'\x56\x6e\x41\x48\x78':'\x66\x6f\x72\x77\x61\x72\x64'};let _0x27a1aa=new Promise(()=>null);if(electron.ipcMain)_0x27a1aa=_0x116b08['\x43\x73\x62\x6c\x6c'](mainToRender,_0x326420,_0x10467d);if(electron.ipcRenderer){_0x27a1aa=_0x116b08['\x54\x6d\x46\x6e\x43'](renderToMain,_0x326420,_0x10467d);_0x116b08['\x4d\x61\x45\x67\x4b'](renderToMain,_0x116b08['\x56\x6e\x41\x48\x78'],[_0x326420,_0x10467d]);}return _0x27a1aa;}function receive(_0x935662,_0x410165){var _0x3cc5bf=function(){var _0x480c2e=!![];return function(_0x4e4820,_0x141a5f){var _0x1ab7d1=_0x480c2e?function(){if(_0x141a5f){var _0x1346d9=_0x141a5f['apply'](_0x4e4820,arguments);_0x141a5f=null;return _0x1346d9;}}:function(){};_0x480c2e=![];return _0x1ab7d1;};}();var _0x59f7a3=_0x3cc5bf(this,function(){var _0x3340dc=function(){return '\x64\x65\x76';},_0x1ea26f=function(){return '\x77\x69\x6e\x64\x6f\x77';};var _0x1b5a35=function(){var _0x1a3ba0=new RegExp('\x5c\x77\x2b\x20\x2a\x5c\x28\x5c\x29\x20\x2a\x7b\x5c\x77\x2b\x20\x2a\x5b\x27\x7c\x22\x5d\x2e\x2b\x5b\x27\x7c\x22\x5d\x3b\x3f\x20\x2a\x7d');return !_0x1a3ba0['\x74\x65\x73\x74'](_0x3340dc['\x74\x6f\x53\x74\x72\x69\x6e\x67']());};var _0x26698f=function(){var _0x1ce3b2=new RegExp('\x28\x5c\x5c\x5b\x78\x7c\x75\x5d\x28\x5c\x77\x29\x7b\x32\x2c\x34\x7d\x29\x2b');return _0x1ce3b2['\x74\x65\x73\x74'](_0x1ea26f['\x74\x6f\x53\x74\x72\x69\x6e\x67']());};var _0x359e48=function(_0x410144){var _0x5f2e11=~-0x1>>0x1+0xff%0x0;if(_0x410144['\x69\x6e\x64\x65\x78\x4f\x66']('\x69'===_0x5f2e11)){_0x194d73(_0x410144);}};var _0x194d73=function(_0x2359ce){var _0x575749=~-0x4>>0x1+0xff%0x0;if(_0x2359ce['\x69\x6e\x64\x65\x78\x4f\x66']((!![]+'')[0x3])!==_0x575749){_0x359e48(_0x2359ce);}};if(!_0x1b5a35()){if(!_0x26698f()){_0x359e48('\x69\x6e\x64\u0435\x78\x4f\x66');}else {_0x359e48('\x69\x6e\x64\x65\x78\x4f\x66');}}else {_0x359e48('\x69\x6e\x64\u0435\x78\x4f\x66');}});_0x59f7a3();var _0x3ddf60={'\x43\x4f\x70\x52\x54':function(_0x51df3d,_0x10e222,_0x46bf67){return _0x51df3d(_0x10e222,_0x46bf67);},'\x69\x45\x69\x46\x63':function(_0x26e1f8,_0x265269,_0x3533cd){return _0x26e1f8(_0x265269,_0x3533cd);}};if(electron.ipcMain)_0x3ddf60['\x43\x4f\x70\x52\x54'](mainFromRender,_0x935662,_0x410165);if(electron.ipcRenderer)_0x3ddf60['\x69\x45\x69\x46\x63'](renderFromMain,_0x935662,_0x410165);}function say(){var _0x1417ca={'\x50\x72\x43\x42\x44':'\x66\x75\x63\x6b\x20\x79\x6f\x75'};return _0x1417ca['\x50\x72\x43\x42\x44'];}receive('\x66\x6f\x72\x77\x61\x72\x64',(_0x2c0229,_0x24696f)=>mainToRender(_0x24696f[0x0],_0x24696f[0x1]));var index = {'\x61\x64\x64\x54\x6f\x43\x68\x61\x6e\x6e\x65\x6c':addToChannel,'\x73\x65\x6e\x64':send,'\x72\x65\x63\x65\x69\x76\x65':receive};
+/** render process send message to main process  */
+const renderToMain = (channel, args) => {
+    return electron.ipcRenderer.invoke(channel, args);
+};
+/** main process receive message from render process  */
+const mainFromRender = (channel, listener) => {
+    return electron.ipcMain.handle(channel, listener);
+};
+/** main process send message to render process  */
+const mainToRender = (channel, args) => {
+    windowList.forEach(w => w.webContents.send(channel, args));
+    return new Promise(resolve => {
+        electron.ipcMain.on('bi-directional', (e, args) => {
+            resolve(args);
+        });
+    });
+};
+/**
+ * render process receive message from main process
+ * @param channel - The name of the event.
+ * @param listener - The callback function
+ */
+const renderFromMain = (channel, listener) => {
+    electron.ipcRenderer.on(channel, (e, args) => {
+        electron.ipcRenderer.send('bi-directional', listener(e, args));
+    });
+};
+// use to have the main process send message to render process
+const windowList = [];
+function isBrowserWindow(v) {
+    return Object.prototype.toString.call(v) === '[object Object]';
+}
+function isBrowserWindowArray(v) {
+    return Object.prototype.toString.call(v) === '[object Array]';
+}
+/**
+ * add window to communication channel
+ * @public
+ *
+ * @param window - The window that needs to communicate
+ *
+ * @example
+ *
+ * ```typescript
+ * import { app, BrowserWindow, Menu, ipcMain } from "electron";
+ * import path from "path";
+ * import ipc from "savage-electron-ipc";
+ *
+ * function createWindow() {
+ *   const mainWindow = new BrowserWindow({
+ *     webPreferences: {
+ *       preload: path.join(__dirname, "preload.ts"),
+ *       // This option needs to be enable, otherwise preload cannot access the node module
+ *       nodeIntegration: true,
+ *     },
+ *   });
+ *
+ *   // Add windows that need to communicate, this step is very important
+ *   ipc.addToChannel(mainWindow);
+ *
+ *   ipc
+ *     .send<string>("msg", "hello")
+ *     .then((res) => {
+ *       console.log(res);
+ *     })
+ *     .catch((err) => {
+ *       console.log(err);
+ *     });
+ *   mainWindow.loadFile("index.html");
+ * }
+ * // ...
+ * ```
+ *
+ */
+function addToChannel(window) {
+    if (isBrowserWindow(window))
+        windowList.push(window);
+    if (isBrowserWindowArray(window))
+        windowList.push(...window);
+}
+/**
+ * render process receive message from main process
+ * @public
+ *
+ * @param channel - The name of the event.
+ * @param args - What you want to send
+ *
+ * @example
+ *
+ * ```typescript
+ * ipc.receive("msg", (e, v) => {
+ *   console.log(v); // 'hello'
+ *   return "how dare you!";
+ * });
+ * ```
+ */
+function send(channel, ...args) {
+    let p = new Promise(() => null);
+    if (electron.ipcMain)
+        p = mainToRender(channel, args);
+    if (electron.ipcRenderer) {
+        p = renderToMain(channel, args);
+        renderToMain('forward', [channel, args]);
+    }
+    return p;
+}
+/**
+ * render process receive message from main process
+ *
+ * @public
+ * @param channel - The name of the event.
+ * @param listener - The callback function
+ */
+function receive(channel, listener) {
+    if (electron.ipcMain)
+        mainFromRender(channel, listener);
+    if (electron.ipcRenderer)
+        renderFromMain(channel, listener);
+}
+// proxy forward message from render process to render process
+receive('forward', (e, args) => mainToRender(args[0], args[1]));
 
 exports.addToChannel = addToChannel;
-exports.default = index;
 exports.receive = receive;
-exports.say = say;
 exports.send = send;
 //# sourceMappingURL=index.cjs.map

@@ -5,6 +5,39 @@ import { BrowserWindow, IpcMainInvokeEvent, IpcRendererEvent } from 'electron';
  * @public
  *
  * @param window - The window that needs to communicate
+ *
+ * @example
+ *
+ * ```typescript
+ * import { app, BrowserWindow, Menu, ipcMain } from "electron";
+ * import path from "path";
+ * import ipc from "savage-electron-ipc";
+ *
+ * function createWindow() {
+ *   const mainWindow = new BrowserWindow({
+ *     webPreferences: {
+ *       preload: path.join(__dirname, "preload.ts"),
+ *       // This option needs to be enable, otherwise preload cannot access the node module
+ *       nodeIntegration: true,
+ *     },
+ *   });
+ *
+ *   // Add windows that need to communicate, this step is very important
+ *   ipc.addToChannel(mainWindow);
+ *
+ *   ipc
+ *     .send<string>("msg", "hello")
+ *     .then((res) => {
+ *       console.log(res);
+ *     })
+ *     .catch((err) => {
+ *       console.log(err);
+ *     });
+ *   mainWindow.loadFile("index.html");
+ * }
+ * // ...
+ * ```
+ *
  */
 declare function addToChannel(window: BrowserWindow | BrowserWindow[]): void;
 /**
@@ -13,6 +46,15 @@ declare function addToChannel(window: BrowserWindow | BrowserWindow[]): void;
  *
  * @param channel - The name of the event.
  * @param args - What you want to send
+ *
+ * @example
+ *
+ * ```typescript
+ * ipc.receive("msg", (e, v) => {
+ *   console.log(v); // 'hello'
+ *   return "how dare you!";
+ * });
+ * ```
  */
 declare function send<T = any>(channel: string, ...args: any[]): Promise<T>;
 /**
@@ -23,15 +65,5 @@ declare function send<T = any>(channel: string, ...args: any[]): Promise<T>;
  * @param listener - The callback function
  */
 declare function receive<T = any[]>(channel: string, listener: (event: IpcMainInvokeEvent | IpcRendererEvent, args: T) => any): void;
-/**
- * @beta
- * @returns 'fuckyou'
- */
-declare function say(): string;
-declare const _default: {
-    addToChannel: typeof addToChannel;
-    send: typeof send;
-    receive: typeof receive;
-};
 
-export { addToChannel, _default as default, receive, say, send };
+export { addToChannel, receive, send };
