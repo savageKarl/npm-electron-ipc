@@ -60,38 +60,6 @@ function isBrowserWindowArray(v: unknown): v is BrowserWindow[] {
  *
  * @param window - The window that needs to communicate
  *
- * @example
- *
- * ```typescript
- * import { app, BrowserWindow, Menu, ipcMain } from "electron";
- * import path from "path";
- * import ipc from "savage-electron-ipc";
- *
- * function createWindow() {
- *   const mainWindow = new BrowserWindow({
- *     webPreferences: {
- *       preload: path.join(__dirname, "preload.ts"),
- *       // This option needs to be enable, otherwise preload cannot access the node module
- *       nodeIntegration: true,
- *     },
- *   });
- *
- *   // Add windows that need to communicate, this step is very important
- *   ipc.addToChannel(mainWindow);
- *
- *   ipc
- *     .send<string>("msg", "hello")
- *     .then((res) => {
- *       console.log(res);
- *     })
- *     .catch((err) => {
- *       console.log(err);
- *     });
- *   mainWindow.loadFile("index.html");
- * }
- * // ...
- * ```
- *
  */
 export function addToChannel(window: BrowserWindow | BrowserWindow[]) {
 	if (isBrowserWindow(window)) windowList.push(window)
