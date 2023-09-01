@@ -1,21 +1,18 @@
 # Electron-ipc
 
-`Electron-ipc` is a module that makes communication between different processes easier and more convenient, out of the box!
+`Electron-ipc`是一个使不同进程之间通信更加简单，更加方便的模块， 开箱即用！
 
-**[中文文档](readme_zh.md)**
+## 功能
 
-## feature
+- 主进程到渲染进程的双向通信
+- 渲染进程到主进程的双向通信
+- 渲染进程到渲染进程的双向通信
 
-- Two-way communication from main process to rendering process
-- Two-way communication from renderer process to main process
-- Render process to render process bidirectional communication
+## 使用
 
-## use
-
-### The main process communicates with the rendering process
+### 主进程与渲染进程通信
 
 > main.ts (Main Process)
-
 
 ```typescript
 import { app, BrowserWindow, Menu, ipcMain } from "electron";
@@ -26,16 +23,16 @@ function createWindow() {
   const mainWindow = new BrowserWindow({
     webPreferences: {
       preload: path.join(__dirname, "preload.ts"),
-      // This option needs to be enable, otherwise preload cannot access the node module
+      // 需要打开这个选项，要不然 preload 无法访问 node 模块
       nodeIntegration: true,
     },
   });
 
-  // Add windows that need to communicate, this step is very important
+  // 添加需要进行通信的窗口，这一步很重要
   ipc.addToChannel(mainWindow);
 
   ipc
-    .send<string>("msg", "hello")
+    .send<string>("滴滴滴", "天王盖地虎")
     .then((res) => {
       console.log(res);
     })
@@ -49,20 +46,18 @@ function createWindow() {
 
 > preload.ts (Preload Script)
 
-
 ```typescript
 import ipc from "savage-electron-ipc";
 
-ipc.renderFromMain("msg", (e, arg) => {
+ipc.renderFromMain("滴滴滴", (e, arg) => {
   console.log(arg);
-  return "hi,there!";
+  return "宝塔镇河妖";
 });
 ```
 
-### The rendering process communicates with the main process
+### 渲染进程与主进程通信
 
 > main.ts (Main Process)
-
 
 ```typescript
 import { app, BrowserWindow, Menu, ipcMain } from "electron";
@@ -76,7 +71,7 @@ function createWindow() {
     },
   });
 
-  // Add windows that need to communicate, this step is very important
+  // 添加需要进行通信的窗口
   ipc.addToChannel(mainWindow);
 
   ipc.receive("msg", (e, v) => {
@@ -90,17 +85,15 @@ function createWindow() {
 
 > preload.ts (Preload Script)
 
-
 ```typescript
 import ipc from "savage-electron-ipc";
 
 ipc.send("msg", "hello");
 ```
 
-### Rendering process communicates with rendering process
+### 渲染进程与渲染进程通信
 
 > main.ts (Main Process)
-
 
 ```typescript
 import { app, BrowserWindow, Menu, ipcMain } from "electron";
@@ -120,7 +113,7 @@ function createWindow() {
     },
   });
 
-  // Add windows that need to communicate, this step is very important
+  // 添加需要进行通信的窗口
   ipc.addToChannel([mainWindow, secondWindow]);
 
   mainWindow.loadFile("index.html");
@@ -131,7 +124,6 @@ function createWindow() {
 
 > preload.ts (Preload Script)
 
-
 ```typescript
 import ipc from "savage-electron-ipc";
 
@@ -139,7 +131,6 @@ ipc.send("msg", "hello");
 ```
 
 > preload2.ts (Preload Script)
-
 
 ```typescript
 import ipc from "savage-electron-ipc";
