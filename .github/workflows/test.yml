@@ -43,4 +43,7 @@ jobs:
       # This step runs the `build` script if there is one specified under the `scripts` key in your `package.json` file.
       - run: pnpm run build --if-present
       # This step runs the `test` script that is specified under the `scripts` key in your `package.json` file.
-      - run: pnpm test
+      - run: |
+          cd test
+          pnpm install --no-frozen-lockfile
+          pnpm test
