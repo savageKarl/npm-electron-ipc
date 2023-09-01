@@ -47,6 +47,7 @@ jobs:
           cd tests
           pnpm install --no-frozen-lockfile
           pnpm test
-          pnpm publish
+          cd ..
+          pnpm push
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN  }}
