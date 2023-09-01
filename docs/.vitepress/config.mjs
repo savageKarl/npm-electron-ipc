@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 import apidocConfig from '../apidocConfig.json'
 
 export default defineConfig({
-	// base: '',
+	base: '/npm-electron-ipc/',
 	title: 'savage-electron-ipc',
 	themeConfig: {
 		sidebar: {
