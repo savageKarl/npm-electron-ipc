@@ -1,56 +1,51 @@
 {
-  "name": "savage-electron-ipc",
-  "version": "0.0.6",
-  "description": "一个用于electron的通信库",
-  "main": "dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "miniprogram": "dist",
-  "files": [
-    "dist/index.cjs",
-    "dist/index.mjs",
-    "dist/main.d.ts",
-    "dist/index.cjs.map",
-    "dist/index.mjs.map"
-  ],
-  "keywords": [
-    "electron-ipc",
-    "electrion",
-    "ipc",
-    "ipc-electron",
-    "electron-publish",
-    "electron-subscribe",
-    "electron ipc",
-    "ipc electron"
-  ],
-  "types": "./dist/main.d.ts",
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  },
-  "type": "module",
-  "scripts": {
-    "dev": "cross-env mode=dev nodemon rollup.config.js",
-    "build": "cross-env mode=pro rollup -c rollup.config.js",
-    "prepush": "npm run build",
-    "push": "npm publish --access public",
-    "lint": "eslint .",
-    "commit": "git-cz",
-    "doc": "api-extractor run"
-  },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-conventional-changelog"
-    }
-  },
-  "license": "GPL-3.0",
-  "devDependencies": {
-    "@mxssfd/typedoc-theme": "^1.1.2",
-    "savage-rollup-config": "^0.0.13",
-    "typedoc": "0.24.8"
-  },
-  "dependencies": {
-    "@microsoft/api-extractor": "^7.36.4",
-    "electron": "^25.0.1",
-    "eslint-plugin-tsdoc": "^0.2.17"
-  }
+	"name": "savage-electron-ipc",
+	"version": "0.0.8",
+	"description": "一个用于electron的通信库",
+	"main": "dist/index.cjs",
+	"module": "./dist/index.mjs",
+	"miniprogram": "dist",
+	"files": [
+		"dist/index.cjs",
+		"dist/index.mjs",
+		"dist/main.d.ts",
+		"dist/index.cjs.map",
+		"dist/index.mjs.map"
+	],
+	"keywords": [
+		"electron-ipc",
+		"electrion",
+		"ipc",
+		"ipc-electron",
+		"electron-publish",
+		"electron-subscribe",
+		"electron ipc",
+		"ipc electron"
+	],
+	"types": "./dist/main.d.ts",
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	},
+	"type": "module",
+	"scripts": {
+		"dev": "cross-env mode=dev nodemon rollup.config.js",
+		"build": "cross-env mode=pro rollup -c rollup.config.js",
+		"prepush": "npm run build",
+		"push": "npm publish --access public",
+		"lint": "eslint .",
+		"commit": "git-cz"
+	},
+	"config": {
+		"commitizen": {
+			"path": "node_modules/cz-conventional-changelog"
+		}
+	},
+	"license": "GPL-3.0",
+	"devDependencies": {
+		"eslint-plugin-tsdoc": "^0.2.17"
+	},
+	"dependencies": {
+		"electron": "^25.0.1"
+	}
 }

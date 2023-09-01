@@ -59,6 +59,39 @@ function isBrowserWindowArray(v: unknown): v is BrowserWindow[] {
  * @public
  *
  * @param window - The window that needs to communicate
+ *
+ * @example
+ *
+ * ```typescript
+ * import { app, BrowserWindow, Menu, ipcMain } from "electron";
+ * import path from "path";
+ * import ipc from "savage-electron-ipc";
+ *
+ * function createWindow() {
+ *   const mainWindow = new BrowserWindow({
+ *     webPreferences: {
+ *       preload: path.join(__dirname, "preload.ts"),
+ *       // This option needs to be enable, otherwise preload cannot access the node module
+ *       nodeIntegration: true,
+ *     },
+ *   });
+ *
+ *   // Add windows that need to communicate, this step is very important
+ *   ipc.addToChannel(mainWindow);
+ *
+ *   ipc
+ *     .send<string>("msg", "hello")
+ *     .then((res) => {
+ *       console.log(res);
+ *     })
+ *     .catch((err) => {
+ *       console.log(err);
+ *     });
+ *   mainWindow.loadFile("index.html");
+ * }
+ * // ...
+ * ```
+ *
  */
 export function addToChannel(window: BrowserWindow | BrowserWindow[]) {
 	if (isBrowserWindow(window)) windowList.push(window)
@@ -71,6 +104,15 @@ export function addToChannel(window: BrowserWindow | BrowserWindow[]) {
  *
  * @param channel - The name of the event.
  * @param args - What you want to send
+ *
+ * @example
+ *
+ * ```typescript
+ * ipc.receive("msg", (e, v) => {
+ *   console.log(v); // 'hello'
+ *   return "how dare you!";
+ * });
+ * ```
  */
 export function send<T = any>(channel: string, ...args: any[]) {
 	let p = new Promise<T>(() => null)
@@ -98,19 +140,5 @@ export function receive<T = any[]>(
 	if (ipcRenderer) renderFromMain(channel, listener)
 }
 
-/**
- * @beta
- * @returns 'fuckyou'
- */
-export function say() {
-	return 'fuck you'
-}
-
 // proxy forward message from render process to render process
 receive<[string, any]>('forward', (e, args) => mainToRender(args[0], args[1]))
-
-export default {
-	addToChannel,
-	send,
-	receive
-}

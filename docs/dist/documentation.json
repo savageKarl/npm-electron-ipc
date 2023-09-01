@@ -1,0 +1,355 @@
+{
+	"id": 0,
+	"name": "savage-electron-ipc",
+	"kind": 1,
+	"kindString": "Project",
+	"flags": {},
+	"originalName": "",
+	"children": [
+		{
+			"id": 1,
+			"name": "addToChannel",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isPublic": true
+			},
+			"signatures": [
+				{
+					"id": 2,
+					"name": "addToChannel",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {
+						"isPublic": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "add window to communication channel"
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```typescript\r\nimport { app, BrowserWindow, Menu, ipcMain } from \"electron\";\r\nimport path from \"path\";\r\nimport ipc from \"savage-electron-ipc\";\r\n\r\nfunction createWindow() {\r\n  const mainWindow = new BrowserWindow({\r\n    webPreferences: {\r\n      preload: path.join(__dirname, \"preload.ts\"),\r\n      // This option needs to be enable, otherwise preload cannot access the node module\r\n      nodeIntegration: true,\r\n    },\r\n  });\r\n\r\n  // Add windows that need to communicate, this step is very important\r\n  ipc.addToChannel(mainWindow);\r\n\r\n  ipc\r\n    .send<string>(\"msg\", \"hello\")\r\n    .then((res) => {\r\n      console.log(res);\r\n    })\r\n    .catch((err) => {\r\n      console.log(err);\r\n    });\r\n  mainWindow.loadFile(\"index.html\");\r\n}\r\n// ...\r\n```"
+									}
+								]
+							}
+						]
+					},
+					"parameters": [
+						{
+							"id": 3,
+							"name": "window",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The window that needs to communicate"
+									}
+								]
+							},
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "reference",
+										"name": "BrowserWindow",
+										"qualifiedName": "Electron.CrossProcessExports.BrowserWindow",
+										"package": "electron"
+									},
+									{
+										"type": "array",
+										"elementType": {
+											"type": "reference",
+											"name": "BrowserWindow",
+											"qualifiedName": "Electron.CrossProcessExports.BrowserWindow",
+											"package": "electron"
+										}
+									}
+								]
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "void"
+					}
+				}
+			]
+		},
+		{
+			"id": 9,
+			"name": "receive",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isPublic": true
+			},
+			"signatures": [
+				{
+					"id": 10,
+					"name": "receive",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {
+						"isPublic": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "render process receive message from main process"
+							}
+						]
+					},
+					"typeParameter": [
+						{
+							"id": 11,
+							"name": "T",
+							"kind": 131072,
+							"kindString": "Type parameter",
+							"flags": {},
+							"default": {
+								"type": "array",
+								"elementType": {
+									"type": "intrinsic",
+									"name": "any"
+								}
+							}
+						}
+					],
+					"parameters": [
+						{
+							"id": 12,
+							"name": "channel",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The name of the event."
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 13,
+							"name": "listener",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The callback function"
+									}
+								]
+							},
+							"type": {
+								"type": "reflection",
+								"declaration": {
+									"id": 14,
+									"name": "__type",
+									"kind": 65536,
+									"kindString": "Type literal",
+									"flags": {},
+									"signatures": [
+										{
+											"id": 15,
+											"name": "__type",
+											"kind": 4096,
+											"kindString": "Call signature",
+											"flags": {},
+											"parameters": [
+												{
+													"id": 16,
+													"name": "event",
+													"kind": 32768,
+													"kindString": "Parameter",
+													"flags": {},
+													"type": {
+														"type": "union",
+														"types": [
+															{
+																"type": "reference",
+																"name": "IpcMainInvokeEvent",
+																"qualifiedName": "Electron.IpcMainInvokeEvent",
+																"package": "electron"
+															},
+															{
+																"type": "reference",
+																"name": "IpcRendererEvent",
+																"qualifiedName": "Electron.IpcRendererEvent",
+																"package": "electron"
+															}
+														]
+													}
+												},
+												{
+													"id": 17,
+													"name": "args",
+													"kind": 32768,
+													"kindString": "Parameter",
+													"flags": {},
+													"type": {
+														"type": "reference",
+														"id": 11,
+														"name": "T"
+													}
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "any"
+											}
+										}
+									]
+								}
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "void"
+					}
+				}
+			]
+		},
+		{
+			"id": 4,
+			"name": "send",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isPublic": true
+			},
+			"signatures": [
+				{
+					"id": 5,
+					"name": "send",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {
+						"isPublic": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "render process receive message from main process"
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@example",
+								"content": [
+									{
+										"kind": "code",
+										"text": "```typescript\r\nipc.receive(\"msg\", (e, v) => {\r\n  console.log(v); // 'hello'\r\n  return \"how dare you!\";\r\n});\r\n```"
+									}
+								]
+							}
+						]
+					},
+					"typeParameter": [
+						{
+							"id": 6,
+							"name": "T",
+							"kind": 131072,
+							"kindString": "Type parameter",
+							"flags": {},
+							"default": {
+								"type": "intrinsic",
+								"name": "any"
+							}
+						}
+					],
+					"parameters": [
+						{
+							"id": 7,
+							"name": "channel",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "The name of the event."
+									}
+								]
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 8,
+							"name": "args",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {
+								"isRest": true
+							},
+							"comment": {
+								"summary": [
+									{
+										"kind": "text",
+										"text": "What you want to send"
+									}
+								]
+							},
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "intrinsic",
+									"name": "any"
+								}
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"typeArguments": [
+							{
+								"type": "reference",
+								"id": 6,
+								"name": "T"
+							}
+						],
+						"name": "Promise",
+						"qualifiedName": "Promise",
+						"package": "typescript"
+					}
+				}
+			]
+		}
+	],
+	"groups": [
+		{
+			"title": "Functions",
+			"children": [
+				1,
+				9,
+				4
+			]
+		}
+	]
+}

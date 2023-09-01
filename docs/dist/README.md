@@ -16,7 +16,6 @@
 
 > main.ts (Main Process)
 
-
 ```typescript
 import { app, BrowserWindow, Menu, ipcMain } from "electron";
 import path from "path";
@@ -49,7 +48,6 @@ function createWindow() {
 
 > preload.ts (Preload Script)
 
-
 ```typescript
 import ipc from "savage-electron-ipc";
 
@@ -62,7 +60,6 @@ ipc.renderFromMain("msg", (e, arg) => {
 ### The rendering process communicates with the main process
 
 > main.ts (Main Process)
-
 
 ```typescript
 import { app, BrowserWindow, Menu, ipcMain } from "electron";
@@ -90,7 +87,6 @@ function createWindow() {
 
 > preload.ts (Preload Script)
 
-
 ```typescript
 import ipc from "savage-electron-ipc";
 
@@ -100,7 +96,6 @@ ipc.send("msg", "hello");
 ### Rendering process communicates with rendering process
 
 > main.ts (Main Process)
-
 
 ```typescript
 import { app, BrowserWindow, Menu, ipcMain } from "electron";
@@ -131,7 +126,6 @@ function createWindow() {
 
 > preload.ts (Preload Script)
 
-
 ```typescript
 import ipc from "savage-electron-ipc";
 
@@ -139,7 +133,6 @@ ipc.send("msg", "hello");
 ```
 
 > preload2.ts (Preload Script)
-
 
 ```typescript
 import ipc from "savage-electron-ipc";
@@ -149,6 +142,5 @@ ipc.receive("msg", (e, v) => {
   return "how dare you!";
 });
 ```
-
 
 # <a href="https://savage181855.github.io/npm-electron-ipc" target="_blank">API</a>
