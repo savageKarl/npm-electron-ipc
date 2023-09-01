@@ -16,44 +16,42 @@
 
 > main.ts (Main Process)
 
-
 ```typescript
-import { app, BrowserWindow, Menu, ipcMain } from "electron";
-import path from "path";
-import ipc from "savage-electron-ipc";
+import { app, BrowserWindow, Menu, ipcMain } from 'electron'
+import path from 'path'
+import { send, addToChannel } from 'savage-electron-ipc'
 
 function createWindow() {
-  const mainWindow = new BrowserWindow({
-    webPreferences: {
-      preload: path.join(__dirname, "preload.ts"),
-      // This option needs to be enable, otherwise preload cannot access the node module
-      nodeIntegration: true,
-    },
-  });
+	const mainWindow = new BrowserWindow({
+		webPreferences: {
+			preload: path.join(__dirname, 'preload.ts'),
+			// This option needs to be enable, otherwise preload cannot access the node module
+			nodeIntegration: true
+		}
+	})
 
-  // Add windows that need to communicate, this step is very important
-  ipc.addToChannel(mainWindow);
+	// Add windows that need to communicate, this step is very important
+	addToChannel(mainWindow)
 
-  ipc
-    .send<string>("msg", "hello")
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  mainWindow.loadFile("index.html");
+	send<string>('msg', 'hello')
+		.then(res => {
+			console.log(res)
+		})
+		.catch(err => {
+			console.log(err)
+		})
+	mainWindow.loadFile('index.html')
 }
+
 // ...
 ```
 
 > preload.ts (Preload Script)
 
-
 ```typescript
-import ipc from "savage-electron-ipc";
+import { receive } from "savage-electron-ipc";
 
-ipc.renderFromMain("msg", (e, arg) => {
+receive("msg", (e, arg) => {
   console.log(arg);
   return "hi,there!";
 });
@@ -63,11 +61,10 @@ ipc.renderFromMain("msg", (e, arg) => {
 
 > main.ts (Main Process)
 
-
 ```typescript
 import { app, BrowserWindow, Menu, ipcMain } from "electron";
 import path from "path";
-import ipc from "savage-electron-ipc";
+import { addToChannel, receive } from "savage-electron-ipc";
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
@@ -77,9 +74,9 @@ function createWindow() {
   });
 
   // Add windows that need to communicate, this step is very important
-  ipc.addToChannel(mainWindow);
+  addToChannel(mainWindow);
 
-  ipc.receive("msg", (e, v) => {
+  receive("msg", (e, v) => {
     console.log(v); // 'hello'
     return "how dare you!";
   });
@@ -90,22 +87,20 @@ function createWindow() {
 
 > preload.ts (Preload Script)
 
-
 ```typescript
-import ipc from "savage-electron-ipc";
+import { send } from "savage-electron-ipc";
 
-ipc.send("msg", "hello");
+send("msg", "hello");
 ```
 
 ### Rendering process communicates with rendering process
 
 > main.ts (Main Process)
 
-
 ```typescript
 import { app, BrowserWindow, Menu, ipcMain } from "electron";
 import path from "path";
-import ipc from "savage-electron-ipc";
+import { addToChannel, receive } from "savage-electron-ipc";
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
@@ -121,7 +116,7 @@ function createWindow() {
   });
 
   // Add windows that need to communicate, this step is very important
-  ipc.addToChannel([mainWindow, secondWindow]);
+  addToChannel([mainWindow, secondWindow]);
 
   mainWindow.loadFile("index.html");
   secondWindow.loadFile("index.html");
@@ -131,24 +126,21 @@ function createWindow() {
 
 > preload.ts (Preload Script)
 
-
 ```typescript
-import ipc from "savage-electron-ipc";
+import { send } from "savage-electron-ipc";
 
-ipc.send("msg", "hello");
+send("msg", "hello");
 ```
 
 > preload2.ts (Preload Script)
 
-
 ```typescript
-import ipc from "savage-electron-ipc";
+import { receive } from "savage-electron-ipc";
 
-ipc.receive("msg", (e, v) => {
+ireceive("msg", (e, v) => {
   console.log(v); // 'hello'
   return "how dare you!";
 });
 ```
-
 
 # <a href="https://savage181855.github.io/npm-electron-ipc" target="_blank">API</a>

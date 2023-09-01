@@ -1,3 +1,5 @@
+savage-electron-ipc / [Exports](modules.md)
+
 # savage-electron-ipc
 
 `savage-electron-ipc` is a module that makes communication between different processes easier and more convenient, out of the box!

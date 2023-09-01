@@ -1,3 +1,5 @@
+[savage-electron-ipc](README.md) / Exports
+
 # savage-electron-ipc
 
 ## Table of contents
@@ -58,6 +60,10 @@ function createWindow() {
 
 `void`
 
+#### Defined in
+
+[index.ts:96](https://github.com/savage181855/npm-electron-ipc/blob/6959373/src/index.ts#L96)
+
 ___
 
 ### receive
@@ -82,6 +88,10 @@ render process receive message from main process
 #### Returns
 
 `void`
+
+#### Defined in
+
+[index.ts:135](https://github.com/savage181855/npm-electron-ipc/blob/6959373/src/index.ts#L135)
 
 ___
 
@@ -116,3 +126,7 @@ ipc.receive("msg", (e, v) => {
 #### Returns
 
 `Promise`<`T`\>
+
+#### Defined in
+
+[index.ts:117](https://github.com/savage181855/npm-electron-ipc/blob/6959373/src/index.ts#L117)

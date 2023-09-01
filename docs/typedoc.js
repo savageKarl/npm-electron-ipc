@@ -24,10 +24,9 @@ async function main() {
 		entryPoints: entries,
 		tsconfig: rootPath('tsconfig.json'),
 		plugin: ['typedoc-plugin-markdown'],
-		allReflectionsHaveOwnDocument: false,
-		hideBreadcrumbs: true,
-		disableSources: true
-		// name: 'API'
+		allReflectionsHaveOwnDocument: false
+		// hideBreadcrumbs: true
+		// disableSources: true
 	})
 
 	const project = app.convert()
