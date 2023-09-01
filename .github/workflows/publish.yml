@@ -37,7 +37,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16.x'
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: 'https://registry.npmjs.org/'
           cache: pnpm
       # This step runs `npm ci` to install any dependencies listed in your `package.json` file.
       - run: pnpm install --no-frozen-lockfile
