@@ -20,12 +20,6 @@ jobs:
     #
     # 您还可以在 Docker 容器中运行作业，或者提供在自己的基础架构上运行的自托管运行器。 有关详细信息，请参阅“[AUTOTITLE](/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idruns-on)”。
     runs-on: ubuntu-latest
-
-    # This job uses a matrix strategy to run the job four times, once for each specified Node version. For more information, see "[AUTOTITLE](/actions/using-jobs/using-a-matrix-for-your-jobs)."
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x, 20.x]
-    #
     steps:
       # 该步骤使用 `actions/checkout` 操作在运行器上下载存储库的副本。
       - uses: actions/checkout@v3
@@ -33,7 +27,7 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 7
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '16.x'
