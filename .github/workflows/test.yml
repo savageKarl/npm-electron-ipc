@@ -41,9 +41,9 @@ jobs:
       # This step runs `npm ci` to install any dependencies listed in your `package.json` file.
       - run: pnpm install --no-frozen-lockfile
       # This step runs the `build` script if there is one specified under the `scripts` key in your `package.json` file.
-      - run: pnpm run build --if-present
+      - run: pnpm run build
       # This step runs the `test` script that is specified under the `scripts` key in your `package.json` file.
       - run: |
-          cd test
+          cd tests
           pnpm install --no-frozen-lockfile
           pnpm test
