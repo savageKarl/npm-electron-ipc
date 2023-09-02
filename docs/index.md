@@ -5,9 +5,9 @@ title: 首页
 
 hero:
   name: savage-electron-ipc
-  text: API 文档
+  text: 说明文档
   actions:
     - theme: brand
       text: 查看
-      link: /dist/README
+      link: /dist/modules
 ---

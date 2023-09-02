@@ -23,4 +23,4 @@ render process receive message from main process
 
 #### Defined in
 
-[index.ts:103](https://github.com/savage181855/npm-electron-ipc/blob/b6413fa/src/index.ts#L103)
+[index.ts:103](https://github.com/savage181855/npm-electron-ipc/blob/cb77096/src/index.ts#L103)

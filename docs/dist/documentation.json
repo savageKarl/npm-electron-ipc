@@ -19,7 +19,7 @@
 					"fileName": "index.ts",
 					"line": 64,
 					"character": 16,
-					"url": "https://github.com/savage181855/npm-electron-ipc/blob/b6413fa/src/index.ts#L64"
+					"url": "https://github.com/savage181855/npm-electron-ipc/blob/cb77096/src/index.ts#L64"
 				}
 			],
 			"signatures": [
@@ -96,7 +96,7 @@
 					"fileName": "index.ts",
 					"line": 103,
 					"character": 16,
-					"url": "https://github.com/savage181855/npm-electron-ipc/blob/b6413fa/src/index.ts#L103"
+					"url": "https://github.com/savage181855/npm-electron-ipc/blob/cb77096/src/index.ts#L103"
 				}
 			],
 			"signatures": [
@@ -179,7 +179,7 @@
 											"fileName": "index.ts",
 											"line": 105,
 											"character": 11,
-											"url": "https://github.com/savage181855/npm-electron-ipc/blob/b6413fa/src/index.ts#L105"
+											"url": "https://github.com/savage181855/npm-electron-ipc/blob/cb77096/src/index.ts#L105"
 										}
 									],
 									"signatures": [
@@ -257,7 +257,7 @@
 					"fileName": "index.ts",
 					"line": 85,
 					"character": 16,
-					"url": "https://github.com/savage181855/npm-electron-ipc/blob/b6413fa/src/index.ts#L85"
+					"url": "https://github.com/savage181855/npm-electron-ipc/blob/cb77096/src/index.ts#L85"
 				}
 			],
 			"signatures": [
@@ -378,7 +378,7 @@
 			"fileName": "index.ts",
 			"line": 1,
 			"character": 0,
-			"url": "https://github.com/savage181855/npm-electron-ipc/blob/b6413fa/src/index.ts#L1"
+			"url": "https://github.com/savage181855/npm-electron-ipc/blob/cb77096/src/index.ts#L1"
 		}
 	]
 }
