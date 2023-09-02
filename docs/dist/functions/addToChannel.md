@@ -16,4 +16,4 @@ add window to communication channel
 
 #### Defined in
 
-[index.ts:64](https://github.com/savage181855/npm-electron-ipc/blob/cb77096/src/index.ts#L64)
+[index.ts:212](https://github.com/savage181855/npm-electron-ipc/blob/4a7af28/src/index.ts#L212)

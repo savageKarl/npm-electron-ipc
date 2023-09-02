@@ -4,6 +4,70 @@
 	"kind": 1,
 	"kindString": "Project",
 	"flags": {},
+	"comment": {
+		"summary": [
+			{
+				"kind": "code",
+				"text": "`savage-electron-ipc`"
+			},
+			{
+				"kind": "text",
+				"text": " is a module that makes communication between different processes easier and more convenient, out of the box!\r\n\n**[中文文档](https://github.com/savage181855/npm-electron-ipc/blob/main/readme_zh.md)**\r\n\n## feature\r\n\n- Two-way communication from main process to rendering process\r\n- Two-way communication from renderer process to main process\r\n- Render process to render process bidirectional communication\r\n\n## use\r\n\n### The main process communicates with the rendering process\r\n\n> main.ts (Main Process)\r\n\n"
+			},
+			{
+				"kind": "code",
+				"text": "```typescript\r\nimport { app, BrowserWindow, Menu, ipcMain } from 'electron'\r\nimport path from 'path'\r\nimport { send, addToChannel } from 'savage-electron-ipc'\r\n\nfunction createWindow() {\r\nconst mainWindow = new BrowserWindow({\r\n\twebPreferences: {\r\n\t\tpreload: path.join(__dirname, 'preload.ts'),\r\n\t\t// This option needs to be enable, otherwise preload cannot access the node module\r\n\t\tnodeIntegration: true\r\n\t}\r\n})\r\n\n// Add windows that need to communicate, this step is very important\r\naddToChannel(mainWindow)\r\n\nsend<string>('msg', 'hello')\r\n\t.then(res => {\r\n\t\tconsole.log(res)\r\n\t})\r\n\t.catch(err => {\r\n\t\tconsole.log(err)\r\n\t})\r\nmainWindow.loadFile('index.html')\r\n}\r\n\n// ...\r\n```"
+			},
+			{
+				"kind": "text",
+				"text": "\r\n\n> preload.ts (Preload Script)\r\n\n"
+			},
+			{
+				"kind": "code",
+				"text": "```typescript\r\nimport { receive } from \"savage-electron-ipc\";\r\n\nreceive(\"msg\", (e, arg) => {\r\n console.log(arg);\r\n return \"hi,there!\";\r\n});\r\n```"
+			},
+			{
+				"kind": "text",
+				"text": "\r\n\n### The rendering process communicates with the main process\r\n\n> main.ts (Main Process)\r\n\n"
+			},
+			{
+				"kind": "code",
+				"text": "```typescript\r\nimport { app, BrowserWindow, Menu, ipcMain } from \"electron\";\r\nimport path from \"path\";\r\nimport { addToChannel, receive } from \"savage-electron-ipc\";\r\n\nfunction createWindow() {\r\n const mainWindow = new BrowserWindow({\r\n   webPreferences: {\r\n     preload: path.join(__dirname, \"preload.ts\"),\r\n   },\r\n });\r\n\n // Add windows that need to communicate, this step is very important\r\n addToChannel(mainWindow);\r\n\n receive(\"msg\", (e, v) => {\r\n   console.log(v); // 'hello'\r\n   return \"how dare you!\";\r\n });\r\n mainWindow.loadFile(\"index.html\");\r\n}\r\n// ...\r\n```"
+			},
+			{
+				"kind": "text",
+				"text": "\r\n\n> preload.ts (Preload Script)\r\n\n"
+			},
+			{
+				"kind": "code",
+				"text": "```typescript\r\nimport { send } from \"savage-electron-ipc\";\r\n\nsend(\"msg\", \"hello\");\r\n```"
+			},
+			{
+				"kind": "text",
+				"text": "\r\n\n### Rendering process communicates with rendering process\r\n\n> main.ts (Main Process)\r\n\n"
+			},
+			{
+				"kind": "code",
+				"text": "```typescript\r\nimport { app, BrowserWindow, Menu, ipcMain } from \"electron\";\r\nimport path from \"path\";\r\nimport { addToChannel, receive } from \"savage-electron-ipc\";\r\n\nfunction createWindow() {\r\n const mainWindow = new BrowserWindow({\r\n   webPreferences: {\r\n     preload: path.join(__dirname, \"preload.ts\"),\r\n   },\r\n });\r\n\n const secondWindow = new BrowserWindow({\r\n   webPreferences: {\r\n     preload: path.join(__dirname, \"preload.ts\"),\r\n   },\r\n });\r\n\n // Add windows that need to communicate, this step is very important\r\n addToChannel([mainWindow, secondWindow]);\r\n\n mainWindow.loadFile(\"index.html\");\r\n secondWindow.loadFile(\"index.html\");\r\n}\r\n// ...\r\n```"
+			},
+			{
+				"kind": "text",
+				"text": "\r\n\n> preload.ts (Preload Script)\r\n\n"
+			},
+			{
+				"kind": "code",
+				"text": "```typescript\r\nimport { send } from \"savage-electron-ipc\";\r\n\nsend(\"msg\", \"hello\");\r\n```"
+			},
+			{
+				"kind": "text",
+				"text": "\r\n\n> preload2.ts (Preload Script)\r\n\n"
+			},
+			{
+				"kind": "code",
+				"text": "```typescript\r\nimport { receive } from \"savage-electron-ipc\";\r\n\nireceive(\"msg\", (e, v) => {\r\n console.log(v); // 'hello'\r\n return \"how dare you!\";\r\n});\r\n```"
+			}
+		]
+	},
 	"originalName": "",
 	"children": [
 		{
@@ -17,9 +81,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 64,
+					"line": 212,
 					"character": 16,
-					"url": "https://github.com/savage181855/npm-electron-ipc/blob/cb77096/src/index.ts#L64"
+					"url": "https://github.com/savage181855/npm-electron-ipc/blob/4a7af28/src/index.ts#L212"
 				}
 			],
 			"signatures": [
@@ -94,9 +158,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 103,
+					"line": 251,
 					"character": 16,
-					"url": "https://github.com/savage181855/npm-electron-ipc/blob/cb77096/src/index.ts#L103"
+					"url": "https://github.com/savage181855/npm-electron-ipc/blob/4a7af28/src/index.ts#L251"
 				}
 			],
 			"signatures": [
@@ -177,9 +241,9 @@
 									"sources": [
 										{
 											"fileName": "index.ts",
-											"line": 105,
+											"line": 253,
 											"character": 11,
-											"url": "https://github.com/savage181855/npm-electron-ipc/blob/cb77096/src/index.ts#L105"
+											"url": "https://github.com/savage181855/npm-electron-ipc/blob/4a7af28/src/index.ts#L253"
 										}
 									],
 									"signatures": [
@@ -255,9 +319,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 85,
+					"line": 233,
 					"character": 16,
-					"url": "https://github.com/savage181855/npm-electron-ipc/blob/cb77096/src/index.ts#L85"
+					"url": "https://github.com/savage181855/npm-electron-ipc/blob/4a7af28/src/index.ts#L233"
 				}
 			],
 			"signatures": [
@@ -376,9 +440,9 @@
 	"sources": [
 		{
 			"fileName": "index.ts",
-			"line": 1,
+			"line": 149,
 			"character": 0,
-			"url": "https://github.com/savage181855/npm-electron-ipc/blob/cb77096/src/index.ts#L1"
+			"url": "https://github.com/savage181855/npm-electron-ipc/blob/4a7af28/src/index.ts#L149"
 		}
 	]
 }

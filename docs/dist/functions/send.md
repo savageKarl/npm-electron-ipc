@@ -32,4 +32,4 @@ ipc.receive("msg", (e, v) => {
 
 #### Defined in
 
-[index.ts:85](https://github.com/savage181855/npm-electron-ipc/blob/cb77096/src/index.ts#L85)
+[index.ts:233](https://github.com/savage181855/npm-electron-ipc/blob/4a7af28/src/index.ts#L233)
