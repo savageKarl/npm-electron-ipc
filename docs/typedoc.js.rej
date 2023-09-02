@@ -1,0 +1,9 @@
+diff a/docs/typedoc.js b/docs/typedoc.js	(rejected hunks)
+@@ -61,6 +61,7 @@
+ 		return
+ 	}
+ 
++	if (data.groups[0].title !== 'Modules') {
+ 		data.groups.forEach(item => {
+ 			result.push({
+ 				text: item.title,

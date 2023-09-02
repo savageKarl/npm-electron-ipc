@@ -1,4 +1,3 @@
-// doc/typedoc.js
 const TypeDoc = require('typedoc')
 const path = require('path')
 const fs = require('fs')
@@ -7,6 +6,8 @@ const fs = require('fs')
 function rootPath(...args) {
 	return path.join(__dirname, '..', ...args)
 }
+
+const outputFolderName = 'dist'
 
 // 主函数
 async function main() {
@@ -24,8 +25,9 @@ async function main() {
 		entryPoints: entries,
 		tsconfig: rootPath('tsconfig.json'),
 		plugin: ['typedoc-plugin-markdown'],
-		allReflectionsHaveOwnDocument: false
-		// hideBreadcrumbs: true
+		allReflectionsHaveOwnDocument: true,
+		hideBreadcrumbs: true
+		// name: 'motherfuck'
 		// disableSources: true
 	})
 
@@ -33,7 +35,7 @@ async function main() {
 
 	if (project) {
 		// 输出产物位置
-		const outputDir = path.join(__dirname, 'dist')
+		const outputDir = path.join(__dirname, outputFolderName)
 
 		// 生成文档内容
 		await app.generateDocs(project, outputDir)
@@ -59,8 +61,53 @@ async function resolveConfig(jsonDir) {
 		return
 	}
 
+	if (data.groups[0].title !== 'Modules') {
+		data.groups.forEach(item => {
+			result.push({
+				text: item.title,
+				items: []
+			})
+		})
+	}
+
 	data.children.forEach(module => {
+		function getIndex(reg) {
+			const i = result.findIndex(v => {
+				return new RegExp(reg).test(v.text)
+			})
+
+			return i
+		}
 		if (module.kindString !== 'Module') {
+			const actionsType = {
+				Class() {
+					result[getIndex('Classes')].items.push({
+						text: `${module.name}`,
+						link: getClassPath(module.name)
+					})
+				},
+				Interface() {
+					result[getIndex('Interfaces')].items.push({
+						text: `${module.name}`,
+						link: getInterfacePath(module.name)
+					})
+				},
+				'Type alias': () => {
+					result[getIndex('Type Aliases')].items.push({
+						text: `${module.name}`,
+						link: getTypePath(module.name)
+					})
+				},
+				Function() {
+					result[getIndex('Functions')].items.push({
+						text: `${module.name}`,
+						link: getFunctionPath(module.name)
+					})
+				}
+			}
+
+			actionsType[module.kindString]()
+
 			return
 		}
 		// Module 作为一级导航
@@ -68,6 +115,7 @@ async function resolveConfig(jsonDir) {
 			text: module.name,
 			items: [{ text: module.name, link: getModulePath(module.name) }]
 		}
+
 		module.children.forEach(sub => {
 			// 类、接口、类型、函数作为二级导航
 			if (sub.kindString === 'Class') {
@@ -114,31 +162,35 @@ function getModulePath(name) {
 }
 
 function getClassPath(moduleName, className) {
+	const name = className
+		? `${transformModuleName(moduleName)}.${className}`
+		: transformModuleName(moduleName)
 	return path
-		.join('/dist/classes', `${transformModuleName(moduleName)}.${className}`)
-		.replace(/\\/g, '/')
+		.join(`/${outputFolderName}/classes`, `${name}`)
+		.replace(/\\/g, `/`)
 }
 
 function getInterfacePath(moduleName, interfaceName) {
+	const name = interfaceName
+		? `${transformModuleName(moduleName)}.${interfaceName}`
+		: transformModuleName(moduleName)
 	return path
-		.join(
-			'/dist/interfaces',
-			`${transformModuleName(moduleName)}.${interfaceName}`
-		)
-		.replace(/\\/g, '/')
+		.join(`/${outputFolderName}/interfaces`, `${name}`)
+		.replace(/\\/g, `/`)
 }
 
 function getTypePath(moduleName, typeName) {
-	return path
-		.join('/dist/types', `${transformModuleName(moduleName)}.${typeName}`)
-		.replace(/\\/g, '/')
+	const name = typeName
+		? `${transformModuleName(moduleName)}.${typeName}`
+		: transformModuleName(moduleName)
+	return path.join(`/${outputFolderName}/types`, `${name}`).replace(/\\/g, `/`)
 }
 
 function getFunctionPath(moduleName, functionName) {
+	const name = functionName
+		? `${transformModuleName(moduleName)}.${functionName}`
+		: transformModuleName(moduleName)
 	return path
-		.join(
-			'/dist/functions',
-			`${transformModuleName(moduleName)}.${functionName}`
-		)
-		.replace(/\\/g, '/')
+		.join(`/${outputFolderName}/functions`, `${name}`)
+		.replace(/\\/g, `/`)
 }

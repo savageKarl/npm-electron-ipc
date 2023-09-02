@@ -17,9 +17,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 96,
+					"line": 64,
 					"character": 16,
-					"url": "https://github.com/savage181855/npm-electron-ipc/blob/6959373/src/index.ts#L96"
+					"url": "https://github.com/savage181855/npm-electron-ipc/blob/b6413fa/src/index.ts#L64"
 				}
 			],
 			"signatures": [
@@ -36,17 +36,6 @@
 							{
 								"kind": "text",
 								"text": "add window to communication channel"
-							}
-						],
-						"blockTags": [
-							{
-								"tag": "@example",
-								"content": [
-									{
-										"kind": "code",
-										"text": "```typescript\r\nimport { app, BrowserWindow, Menu, ipcMain } from \"electron\";\r\nimport path from \"path\";\r\nimport ipc from \"savage-electron-ipc\";\r\n\r\nfunction createWindow() {\r\n  const mainWindow = new BrowserWindow({\r\n    webPreferences: {\r\n      preload: path.join(__dirname, \"preload.ts\"),\r\n      // This option needs to be enable, otherwise preload cannot access the node module\r\n      nodeIntegration: true,\r\n    },\r\n  });\r\n\r\n  // Add windows that need to communicate, this step is very important\r\n  ipc.addToChannel(mainWindow);\r\n\r\n  ipc\r\n    .send<string>(\"msg\", \"hello\")\r\n    .then((res) => {\r\n      console.log(res);\r\n    })\r\n    .catch((err) => {\r\n      console.log(err);\r\n    });\r\n  mainWindow.loadFile(\"index.html\");\r\n}\r\n// ...\r\n```"
-									}
-								]
 							}
 						]
 					},
@@ -105,9 +94,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 135,
+					"line": 103,
 					"character": 16,
-					"url": "https://github.com/savage181855/npm-electron-ipc/blob/6959373/src/index.ts#L135"
+					"url": "https://github.com/savage181855/npm-electron-ipc/blob/b6413fa/src/index.ts#L103"
 				}
 			],
 			"signatures": [
@@ -188,9 +177,9 @@
 									"sources": [
 										{
 											"fileName": "index.ts",
-											"line": 137,
+											"line": 105,
 											"character": 11,
-											"url": "https://github.com/savage181855/npm-electron-ipc/blob/6959373/src/index.ts#L137"
+											"url": "https://github.com/savage181855/npm-electron-ipc/blob/b6413fa/src/index.ts#L105"
 										}
 									],
 									"signatures": [
@@ -266,9 +255,9 @@
 			"sources": [
 				{
 					"fileName": "index.ts",
-					"line": 117,
+					"line": 85,
 					"character": 16,
-					"url": "https://github.com/savage181855/npm-electron-ipc/blob/6959373/src/index.ts#L117"
+					"url": "https://github.com/savage181855/npm-electron-ipc/blob/b6413fa/src/index.ts#L85"
 				}
 			],
 			"signatures": [
@@ -389,7 +378,7 @@
 			"fileName": "index.ts",
 			"line": 1,
 			"character": 0,
-			"url": "https://github.com/savage181855/npm-electron-ipc/blob/6959373/src/index.ts#L1"
+			"url": "https://github.com/savage181855/npm-electron-ipc/blob/b6413fa/src/index.ts#L1"
 		}
 	]
 }
